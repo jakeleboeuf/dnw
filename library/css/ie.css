@@ -1,6 +1,6 @@
 /******************************************************************
-Site Name: 
-Author: 
+Site Name: Date Night Theme
+Author: Jake LeBoeuf
 
 Stylesheet: IE Stylesheet
 
@@ -18,8 +18,8 @@ import the mixins file so SASS can understand the variables.
 */
 /* import mixins */
 /******************************************************************
-Site Name:
-Author:
+Site Name: Date Night Theme
+Author: Jake LeBoeuf
 
 Stylesheet: Mixins & Constants Stylesheet
 
@@ -93,7 +93,7 @@ use the best ampersand
 http://simplebits.com/notebook/2008/08/14/ampersands-2/
 */
 span.amp {
-  font-family: Baskerville,'Goudy Old Style',Palatino,'Book Antiqua',serif !important;
+  font-family: Baskerville, "Goudy Old Style", Palatino, "Book Antiqua", serif !important;
   font-style: italic; }
 
 .text-left {
@@ -127,7 +127,7 @@ span.amp {
   background: #e6efc2; }
 
 /*********************
-TRANISTION
+TRANSITION
 *********************/
 /*
 I totally rewrote this to be cleaner and easier to use.
@@ -218,8 +218,89 @@ BUTTONS
     background-image: linear-gradient(to bottom, #1681c4, #1990db); }
 
 /******************************************************************
-Site Name: 
-Author: 
+Site Name: Date Night Theme
+Author: Jake LeBoeuf
+
+Stylesheet: Grid Stylesheet
+
+I've seperated the grid so you can swap it out easily. It's
+called at the top the style.scss stylesheet.
+
+There are a ton of grid solutions out there. You should definitely
+experiment with your own. Here are some recommendations:
+
+http://gridsetapp.com - Love this site. Responsive Grids made easy.
+http://susy.oddbird.net/ - Grids using Compass. Very elegant.
+http://gridpak.com/ - Create your own responsive grid.
+
+The grid below is a combination of the 1140 grid and Twitter Boostrap. 
+I liked 1140 but Boostrap's grid was way more detailed so I merged them 
+together, let's see how this works out. If you want to use 1140, the original 
+values are commented out on each line.
+
+******************************************************************/
+.onecol {
+  width: 5.801104972%; }
+
+/* 4.85%;  } /* grid_1  */
+.twocol {
+  width: 14.364640883%; }
+
+/* 13.45%; } /* grid_2  */
+.threecol {
+  width: 22.928176794%; }
+
+/* 22.05%; } /* grid_3  */
+.fourcol {
+  width: 31.491712705%; }
+
+/* 30.75%; } /* grid_4  */
+.fivecol {
+  width: 40.055248616%; }
+
+/* 39.45%; } /* grid_5  */
+.sixcol {
+  width: 48.618784527%; }
+
+/* 48%;    } /* grid_6  */
+.sevencol {
+  width: 57.182320438000005%; }
+
+/* 56.75%; } /* grid_7  */
+.eightcol {
+  width: 65.74585634900001%; }
+
+/* 65.4%;  } /* grid_8  */
+.ninecol {
+  width: 74.30939226%; }
+
+/* 74.05%; } /* grid_9  */
+.tencol {
+  width: 82.87292817100001%; }
+
+/* 82.7%;  } /* grid_10 */
+.elevencol {
+  width: 91.436464082%; }
+
+/* 91.35%; } /* grid_11 */
+.twelvecol {
+  width: 99.999999993%; }
+
+/* 100%;   } /* grid_12 */
+.onecol, .twocol, .threecol, .fourcol, .fivecol, .sixcol, .sevencol, .eightcol, .ninecol, .tencol, .elevencol, .twelvecol {
+  position: relative;
+  float: left;
+  margin-left: 2.762430939%; }
+
+.first {
+  margin-left: 0; }
+
+.last {
+  float: right; }
+
+/******************************************************************
+Site Name: Date Night Theme
+Author: Jake LeBoeuf
 
 Stylesheet: 481px and Up Stylesheet
 
@@ -284,8 +365,8 @@ do they need tweaking?
 */
 /* end .footer-links */
 /******************************************************************
-Site Name:
-Author:
+Site Name: Date Night Theme
+Author: Jake LeBoeuf
 
 Stylesheet: Tablet & Small Desktop Stylesheet
 
@@ -306,7 +387,7 @@ LAYOUT & GRID STYLES
   max-width: 1140px; }
 
 /*********************
-HEADER SYTLES
+HEADER STYLES
 *********************/
 /*********************
 NAVIGATION STYLES
@@ -334,8 +415,8 @@ NAVIGATION STYLES
         background-color: #dedede; }
     .nav li ul.sub-menu,
     .nav li ul.children {
-      width: 200px;
-      border: 1px solid #ccc;
+      margin-top: 0;
+      border: 1px solid #cccccc;
       border-top: 0;
       position: absolute;
       display: none;
@@ -354,7 +435,7 @@ NAVIGATION STYLES
           border-right: 0;
           display: block;
           width: 180px;
-          border-bottom: 1px solid #ccc; }
+          border-bottom: 1px solid #cccccc; }
         .nav li ul.sub-menu li:last-child a,
         .nav li ul.children li:last-child a {
           border-bottom: 0; }
@@ -370,7 +451,7 @@ SIDEBARS & ASIDES
   margin-top: 2.2em; }
 
 .widgettitle {
-  border-bottom: 2px solid #444;
+  border-bottom: 2px solid #444444;
   margin-bottom: 0.75em; }
 
 .widget {
@@ -411,8 +492,8 @@ mobile. Make sure to double check these!
 
 /* end .footer-links */
 /******************************************************************
-Site Name: 
-Author: 
+Site Name: Date Night Theme
+Author: Jake LeBoeuf
 
 Stylesheet: Desktop Stylsheet
 

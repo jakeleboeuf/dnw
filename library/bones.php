@@ -166,6 +166,7 @@ THEME SUPPORT
 
 // Adding WP 3+ Functions & Theme Support
 function bones_theme_support() {
+	
 
 	// wp thumbnails (sizes handled in functions.php)
 	add_theme_support('post-thumbnails');
@@ -176,8 +177,8 @@ function bones_theme_support() {
 	// wp custom background (thx to @bransonwerner for update)
 	add_theme_support( 'custom-background',
 	    array(
-	    'default-image' => '',  // background image default
-	    'default-color' => '', // background color default (dont add the #)
+	    'default-image' => get_stylesheet_directory_uri() . '/library/img/dnw_bg.jpg',  // background image default
+	    'default-color' => '000000', // background color default (dont add the #)
 	    'wp-head-callback' => '_custom_background_cb',
 	    'admin-head-callback' => '',
 	    'admin-preview-callback' => ''
@@ -188,7 +189,37 @@ function bones_theme_support() {
 	add_theme_support('automatic-feed-links');
 
 	// to add header image support go here: http://themble.com/support/adding-header-background-image-support/
+	
+	// header image define
+	if (!defined('NO_HEADER_TEXT')) { define('NO_HEADER_TEXT', true ); } // no header text
+	if (!defined('HEADER_TEXTCOLOR')) { define('HEADER_TEXTCOLOR', 'ffffff'); } // header text color
+	if (!defined('HEADER_IMAGE')) { define('HEADER_IMAGE', get_template_directory_uri() . '/library/img/dnw-logo.png'); } // default header image
+	if (!defined('HEADER_IMAGE_WIDTH')) { define('HEADER_IMAGE_WIDTH', 200); } // the width of the logo
+	if (!defined('HEADER_IMAGE_HEIGHT')) { define('HEADER_IMAGE_HEIGHT', 100); } // the height of the logo
+	
+	// gets included in the site header
+	function bones_header_style() { ?>
+	    <style type="text/css"> header[role=banner] { background: url(<? header_image(); ?>); } </style><?php
+	}
+	// gets included in the admin header
+	function admin_header_style() { ?>
+	    <style type="text/css">
+		#headimg {
+			  background-color: #333;
+				padding:20px;
+				background-repeat: no-repeat;
+				background-position:18px 18px;
+		    width: <?php echo HEADER_IMAGE_WIDTH; ?>px;
+		    height: <?php echo HEADER_IMAGE_HEIGHT; ?>px;
+		}
+	    </style>
+	<?php }
 
+	add_custom_image_header('header_style', 'admin_header_style');	
+
+
+	// end header
+	
 	// adding post format support
 	add_theme_support( 'post-formats',
 		array(
