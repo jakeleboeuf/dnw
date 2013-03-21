@@ -45,10 +45,146 @@ require_once('library/admin.php'); // this comes turned off by default
 */
 // require_once('library/translation/translation.php'); // this comes turned off by default
 
+
+/************* INSTALL NEEDED PLUGINS *************/
+
+// Jake - Note to self: This needs to be worked on
+
+//require_once('library/plugins/plugin-includer/plugin-includer.php');/**
+
+
+
+
+
+/************* Jake's Theme stuff *************/
+/**
+ * Callback function to the add_theme_page
+ * Will display the theme options page
+ */
+function dnw_theme_page()
+{
+?>
+<div class="section panel">
+<h1>Custom Theme Options</h1>
+<form method="post" enctype="multipart/form-data" action="options.php">
+        <?php
+          settings_fields('dnw_theme_options'); 
+          do_settings_sections('dnw_theme_options.php');
+        ?>
+<p class="submit">
+                <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
+            
+</form>
+</div>
+    <?php
+}
+
+/**
+ * Register the settings to use on the theme options page
+ */
+add_action( 'admin_init', 'dnw_register_settings' );
+/**
+ * Function to register the settings
+ */
+function dnw_register_settings()
+{
+    // Register the settings with Validation callback
+    register_setting( 'dnw_theme_options', 'dnw_theme_options', 'dnw_validate_settings' );
+    // Add settings section
+    add_settings_section( 'dnw_text_section', 'Home Page Content', 'dnw_display_section', 'dnw_theme_options.php' );
+    // Create textbox field
+    $field_args = array(
+      'type'      => 'text',
+      'id'        => 'dnw_dates',
+      'name'      => 'dnw_dates',
+      'desc'      => ' Example: 4 DATES',
+      'std'       => '',
+      'label_for' => 'dnw_dates',
+      'class'     => 'css_class'
+    	);
+    add_settings_field( 'example_textbox', 'Number of Dates', 'dnw_display_setting', 'dnw_theme_options.php', 'dnw_text_section', $field_args );
+
+		$field_args = array(
+      'type'      => 'text',
+      'id'        => 'dnw_weeks',
+      'name'      => 'dnw_weeks',
+      'desc'      => ' Example: 4 WEEKS',
+      'std'       => '',
+      'label_for' => 'dnw_weeks',
+      'class'     => 'css_class'
+    	);
+    add_settings_field( 'dnw_weeksBox', 'Number of Weeks', 'dnw_display_setting', 'dnw_theme_options.php', 'dnw_text_section', $field_args );
+
+
+		$field_args = array(
+      'type'      => 'text',
+      'id'        => 'dnw_url',
+      'name'      => 'dnw_url',
+      'desc'      => ' youraccount.us5.list-manage.com/',
+      'std'       => '',
+      'label_for' => 'dnw_url',
+      'class'     => 'css_class',
+			'dnw_form_url' => '&nbsp;&nbsp;<a href="http://kb.mailchimp.com/article/where-do-i-find-the-link-for-my-sign-up-form" target="_blank">Learn more here</a>'
+    	);
+    add_settings_field( 'dnw_url', 'Mailchimp Form URL', 'dnw_display_setting', 'dnw_theme_options.php', 'dnw_text_section', $field_args );
+}
+
+/**
+ * Function to display the settings on the page
+ * This is setup to be expandable by using a switch on the type variable.
+ * In future you can add multiple types to be display from this function,
+ * Such as checkboxes, select boxes, file upload boxes etc.
+ */
+function dnw_display_setting($args)
+{
+    extract( $args );
+    $option_name = 'dnw_theme_options';
+    $options = get_option( $option_name );
+    switch ( $type ) {
+          case 'text':
+              $options[$id] = stripslashes($options[$id]);
+              $options[$id] = esc_attr( $options[$id]);
+              echo "<input class='regular-text$class' type='text' id='$id' name='" . $option_name . "[$id]' value='$options[$id]' placeholder='$desc' />";
+							echo "$dnw_form_url";
+          break;
+    }
+}
+
+/**
+ * Callback function to the register_settings function will pass through an input variable
+ * You can then validate the values and the return variable will be the values stored in the database.
+ */
+function dnw_validate_settings($input)
+{
+  foreach($input as $k => $v)
+  {
+    $newinput[$k] = trim($v);
+    // Check the input is a letter or a number
+    if(!preg_match('/^[A-Z0-9 _]*$/i', $v)) {
+      //$newinput[$k] = '';
+    }
+  }
+  return $newinput;
+}
+
+/**
+ * Function to add extra text to display on each section
+ */
+function dnw_display_section($section){ 
+}
+
+// Add the section to the theme
+function dnw_theme_menu()
+{
+  add_theme_page( 'Theme Option', 'Theme Options', 'manage_options', 'dnw_theme_options.php', 'dnw_theme_page');
+}
+add_action('admin_menu', 'dnw_theme_menu');
+
 /************* THUMBNAIL SIZE OPTIONS *************/
 
 // Thumbnail sizes
 add_image_size( 'bones-thumb-600', 600, 150, true );
+add_image_size( 'bones-thumb-dnw', 600, 330, true );
 add_image_size( 'bones-thumb-300', 300, 100, true );
 /*
 to add more sizes, simply copy a line from above

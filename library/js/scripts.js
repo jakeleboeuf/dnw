@@ -8,7 +8,6 @@ this file will be called automatically in the footer so as not to
 slow the page load.
 
 */
-
 // IE8 ployfill for GetComputed Style (for Responsive Script below)
 if (!window.getComputedStyle) {
     window.getComputedStyle = function(el, pseudo) {
@@ -106,3 +105,28 @@ jQuery(document).ready(function($) {
 	w.addEventListener( "orientationchange", restoreZoom, false );
 	w.addEventListener( "devicemotion", checkTilt, false );
 })( this );
+
+
+// ---------------------------------------- 
+// All Jake's JS -------------------------- 
+// ----------------------------------------
+
+$(document).ready(function() {
+
+	window.mySwipe = new Swipe(document.getElementById('slider'), {
+	  startSlide: 0,
+	  speed: 400,
+	  auto: 3000,
+	  continuous: true,
+	  disableScroll: false,
+	  stopPropagation: false,
+	  callback: function(index, elem) {dots()},
+	  transitionEnd: function(index, elem) {}
+	});
+	function dots(){
+		//alert('a');
+	}
+	
+	hideIt();
+	
+});

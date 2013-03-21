@@ -18,7 +18,7 @@ GENERAL STYLES
 *********************/
 
 body {
-	font-family: $serif;
+	font-family: $sans-serif;
 	font-size: 100%;
 	line-height: 1.5;
 	color: #565656;
@@ -152,9 +152,17 @@ h5, .h5 {
 HEADER STYLES
 *********************/
 
-.header {}
+.header {
+	.h1 {
+		margin-bottom: 0;
+		padding-bottom: 0;
+	}
+}
 
-	#logo {}
+	#logo {
+		display:block;
+		float:left;
+	}
 
 /*********************
 NAVIGATION STYLES
@@ -167,20 +175,29 @@ easily write one group of styles for
 the navs on the site so our css is cleaner
 and more scalable.
 */
-
+.top-nav{
+	display:block;
+	float:left;
+	margin-top:37px;
+}
 .nav {
 	border: 1px solid #ccc;
 	border-bottom: 0;
+	background: transparent;
 
 	li {
 
 		a {
-			display: block;
+			display: inline-block;
 			text-decoration: none;
-			padding: 10px 10px;
-			background-color: #eee;
+			padding: 0px 10px;
 			border-bottom: 1px solid #ccc;
-
+			margin-right: 25px;
+			font-weight: 100;
+			color: $dnw-blue;
+			text-transform: uppercase;
+			line-height:18px;
+			
 			/*
 			remember this is for mobile ONLY, so there's no need
 			to even declare hover styles here, you can do it in
@@ -194,7 +211,9 @@ and more scalable.
 
 		&:first-child {}
 
-		&:last-child {}
+		&:last-child {
+			margin-right: 0px;
+		}
 
 		/*
 		so you really have to rethink your dropdowns for mobile.
@@ -240,12 +259,225 @@ and more scalable.
 } /* end .nav */
 
 
+/* ---------------
+/////	SWIPE STUFF
+------------ */
+
+.swipe {
+  overflow: hidden;
+  visibility: hidden;
+  position: relative;
+}
+.swipe-wrap {
+  overflow: hidden;
+  position: relative;
+}
+.swipe-wrap > div {
+  float:left;
+  width:100%;
+  position: relative;
+}
+.sLeft {
+	h2 {
+		margin-top:0px;
+		color: $dnw-title;
+	}
+	p{
+		color: $dnw-text;
+	}
+}
+.hidden {
+	display:none;
+}
+.slideNav {	
+	width: 100%;
+	position: absolute;
+	top: 430px;
+	z-index: 9999;
+	
+	.left {
+		left:15px;
+		position: absolute;
+		background: rgba(0,0,0,.35) url(../img/arrows.png) no-repeat 5px 5px;
+		border-radius:8px 0 0 8px;
+		display: block;
+		width: 40px;
+		height: 110px;
+		cursor: pointer;
+		border: 0;
+		text-indent:-999999;
+		font-size:1px;
+		@include transition(all 0.1s ease-in-out);
+		&:hover{
+			left:13px;
+		}
+	}
+	.right {
+		right: 15px;
+		position: absolute;
+		background: rgba(0,0,0,.35) url(../img/arrows.png) no-repeat;
+		border-radius:8px 0 0 8px;
+		display: block;
+		width: 40px;
+		height: 110px;
+		cursor: pointer;
+		border: 0;
+		text-indent:-999999;
+		font-size:1px;
+		background-position: -33px 5px;
+		@include transition(all 0.1s ease-in-out);
+		&:hover{
+			right:13px;
+		}
+		
+	}
+}
+
+/****************
+HOME Page styles
+****************/
+
+/***  Main  ***/
+/* ******** */
+.divider {
+	border-top: 1px solid darken($dnw-white, 80%);
+	clear: both;
+	height: 1px;
+	margin: 40px 0;
+}
+.hm_wi {
+	margin-top: 10px;
+	font-size:4em;
+	font-weight: 900;
+	color: $dnw-white;
+  text-align:center;
+  border: 1px solid darken($dnw-white, 80%);
+	border-right: 0px;
+	border-left: 0px;
+	text-shadow: 0px 0px 10px rgba(255,255,255, .55), 0 2px 1px #000;
+	p {
+		margin: 0em 0;
+	}
+	strong {
+		font-weight:100;
+		color: $dnw-blue;
+	}
+}
+/***  2nd   ***/
+/* ******** */
+
+.lite {
+	color: $dnw-blue;
+	font-weight:100;
+	text-shadow: 0px 0px 10px rgba(255,255,255, .65), 0 2px 1px #000;
+};
+.signUp {
+	h3 {
+	margin: 0;
+	font-size:3em;
+	font-weight: 900;
+	color: $dnw-white;
+	text-shadow: 0px 0px 10px rgba(255,255,255, .55), 0 2px 1px #000;
+	}
+}
+.dnw_dates_input {
+	float:left;
+	display:block;
+	padding:10px;
+	background: $dnw-white;
+	color: $dnw-gray;
+	font-size:24px;
+	border-radius:4px;
+	border: 0px;
+}
+.confirm {
+	margin-top:8px;
+}
+.dnw_dates_btn {
+	float:left;
+	display:block;
+	background: $dnw-blue;
+	border-radius: 4px;
+	margin:0 10px;
+	padding:10px;
+	font-size:24px;
+	border: 0px;
+	color: $dnw-white;
+	font-weight:900;
+	.lit {
+	font-weight:100;
+		letter-spacing:1px;
+	}
+	&:hover{
+		background: darken($dnw-blue, 5%);
+		color: $dnw-white;
+		cursor: pointer;
+		text-shadow: 0px 0px 10px $dnw-blue, 0 0px 10px lighten($dnw-blue,5%);
+		box-shadow: 0px 0px 10px 3px rgba(255,255,255,.2);
+	}
+}
+.confirm label {
+	cursor: pointer;
+}
+
+/***  2nd   ***/
+/* ******** */
+
+.tertiary {
+	a{
+		border-radius: 4px;
+		padding:10px;
+		font-size:32px;
+		display:inline-block;
+		text-decoration: none;
+		background: $dnw-white;
+		color: $dnw-blue;
+		width:100%;
+		text-align: center;
+		font-weight:900;
+		margin-bottom:10px;
+		letter-spacing:5px;
+		.lit {
+			font-weight:100;
+		}	
+	}
+}
+
+/****************
+DEALS Page styles
+****************/
+.list-it{
+	h1 {
+		color: $dnw-white;
+	}
+	article {
+		background: darken($dnw-gray, 5%);
+		padding:0px 30px 15px;
+		margin-top:10px;
+		border-radius:4px;
+		
+		p {
+			margin: 0 0 1em;
+		}
+		
+		&:nth-child(odd){
+		background: darken($dnw-gray, 7%);
+		}
+		
+		&:first-child{
+			margin-top: 0;
+		}
+		
+	}
+}
+
+
 /*********************
 POSTS & CONTENT STYLES
 *********************/
 
 #content {
-	margin-top: 2.2em;
+	margin-top: .2em;
 }
 
 		.hentry {
@@ -539,7 +771,7 @@ COMMENT STYLES
 		clear: both;
 		overflow: hidden;
 		list-style-type: none;
-		margin-bottom: 1.5em;
+		margin-bottom: 0;
 		padding: 0.7335em 10px;
 
 		&:last-child {
@@ -588,10 +820,10 @@ COMMENT STYLES
 	/* general comment classes */
 	.alt {}
 	.odd {
-		background: #eee;
+		background: darken($dnw-gray, 6%);
 	}
 	.even {
-		background: #fefefe;
+		background: darken($dnw-gray, 4%);
 	}
 	.parent {}
 	.comment {}

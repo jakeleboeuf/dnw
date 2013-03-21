@@ -141,6 +141,8 @@ function bones_scripts_and_styles() {
 
     //adding scripts file in the footer
     wp_register_script( 'bones-js', get_stylesheet_directory_uri() . '/library/js/scripts.js', array( 'jquery' ), '', true );
+    wp_register_script( 'slider', get_stylesheet_directory_uri() . '/library/js/swipe/swipe.js', array( 'jquery' ), '', true );
+    wp_register_script( 'newJS', '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', array( 'jquery' ), '', true );
 
     // enqueue styles and scripts
     wp_enqueue_script( 'bones-modernizr' );
@@ -155,7 +157,9 @@ function bones_scripts_and_styles() {
     and your site will load faster.
     */
     wp_enqueue_script( 'jquery' );
+    wp_enqueue_script( 'newJS' );
     wp_enqueue_script( 'bones-js' );
+    wp_enqueue_script( 'slider' );
 
   }
 }
@@ -194,7 +198,7 @@ function bones_theme_support() {
 	if (!defined('NO_HEADER_TEXT')) { define('NO_HEADER_TEXT', true ); } // no header text
 	if (!defined('HEADER_TEXTCOLOR')) { define('HEADER_TEXTCOLOR', 'ffffff'); } // header text color
 	if (!defined('HEADER_IMAGE')) { define('HEADER_IMAGE', get_template_directory_uri() . '/library/img/dnw-logo.png'); } // default header image
-	if (!defined('HEADER_IMAGE_WIDTH')) { define('HEADER_IMAGE_WIDTH', 200); } // the width of the logo
+	if (!defined('HEADER_IMAGE_WIDTH')) { define('HEADER_IMAGE_WIDTH', 265); } // the width of the logo
 	if (!defined('HEADER_IMAGE_HEIGHT')) { define('HEADER_IMAGE_HEIGHT', 100); } // the height of the logo
 	
 	// gets included in the site header

@@ -70,8 +70,14 @@ $white:             #fff;
 $bones-pink:        #f01d4f;
 $bones-blue:        #1990db;
 
-$link-color:        $bones-pink;
-$link-hover:        darken($link-color, 9%);
+$dnw-white:        	#f7f7f7;
+$dnw-blue:        	#2a9ee1;
+$dnw-gray:        	#1f2427;
+$dnw-title:        	$white;
+$dnw-text:        	darken($white, 25%);
+
+$link-color:        $dnw-white;
+$link-hover:        $dnw-blue;
 
 /*
 Here's a great tutorial on how to
@@ -125,7 +131,6 @@ span.amp {
 
 // alerts and notices
 %alert {
-	margin: 10px;
 	padding: 5px 18px;
 	border: 1px solid;
 }
@@ -138,8 +143,8 @@ span.amp {
 
 .alert-info {
 	@extend %alert;
-	border-color: darken($alert-blue, 5%);
-	background: $alert-blue;
+	border-color: darken($dnw-gray, 4%);
+	background: darken($dnw-gray, 5%);
 }
 
 .alert-error {
@@ -212,9 +217,9 @@ BUTTONS
 
 .button, .button:visited {
 	font-family: $sans-serif;
-	border: 1px solid darken($link-color, 13%);
-	border-top-color: darken($link-color, 7%);
-	border-left-color: darken($link-color, 7%);
+	border: 1px solid darken($dnw-blue, 13%);
+	border-top-color: darken($dnw-blue, 7%);
+	border-left-color: darken($dnw-blue, 7%);
 	padding: 4px 12px;
 	color: $white;
 	display: inline-block;
@@ -226,19 +231,19 @@ BUTTONS
 	margin-bottom: 20px;
 	line-height: 21px;
 	border-radius: 4px;
-	@include css-gradient($link-color, darken($link-color, 5%));
+	@include css-gradient($dnw-blue, darken($dnw-blue, 5%));
 
 
 	&:hover, &:focus {
 		color: $white;
-	  	border: 1px solid darken($link-color, 13%);
-	  	border-top-color: darken($link-color, 20%);
-	 	border-left-color: darken($link-color, 20%);
-		@include css-gradient(darken($link-color, 5%), darken($link-color, 10%));
+	  	border: 1px solid darken($dnw-blue, 13%);
+	  	border-top-color: darken($dnw-blue, 20%);
+	 	border-left-color: darken($dnw-blue, 20%);
+		@include css-gradient(darken($dnw-blue, 5%), darken($dnw-blue, 10%));
 	}
 
 	&:active {
-		@include css-gradient(darken($link-color, 5%), $link-color);
+		@include css-gradient(darken($dnw-blue, 5%), $dnw-blue);
 	}
 }
 

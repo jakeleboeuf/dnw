@@ -40,7 +40,6 @@ NAVIGATION STYLES
 *********************/
 
 .nav {
-	background: #eee;
 	border: 0;
 
 	li {
@@ -54,9 +53,13 @@ NAVIGATION STYLES
 			you can use hover styles here even though this size
 			has the possibility of being a mobile device.
 			*/
+			&:first-line{
+				font-weight: 700;
+				color: $link-color;
+			}
 			&:hover, &:focus {
-				background-color: #dedede;
-
+				//background-color: #dedede;
+				text-shadow: 0px 0px 10px rgba(255,255,255, .55), 0 2px 1px #000;
 			}
 		}
 
