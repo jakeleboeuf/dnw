@@ -16,12 +16,11 @@ and will be used across all viewports.
 /*********************
 GENERAL STYLES
 *********************/
-
 body {
 	font-family: $sans-serif;
 	font-size: 100%;
 	line-height: 1.5;
-	color: #565656;
+	color: darken($dnw-white, 40%);
 }
 
 /********************
@@ -179,14 +178,46 @@ and more scalable.
 	display:block;
 	float:left;
 	margin-top:37px;
+	width:70%;
 }
-.nav {
+.footer-nav{
+	text-align:center; 
+		li{
+		float:none!important;
+		margin-left: 15px;
+		display:inline;
+		font-size:12px;
+		color: lighten($dnw-gray,20%);
+		&:first-child{
+			margin-left:0px;
+		}
+		a {
+			text-decoration: none;
+			color: lighten($dnw-gray,20%);
+		}
+	}
+}
+.top-nav {
 	border: 1px solid #ccc;
 	border-bottom: 0;
 	background: transparent;
 
 	li {
-
+		&:nth-child(1){
+			margin-bottom:18px;
+		}
+		
+		&:nth-child(2){
+			margin-bottom:18px;
+		}
+		
+		&:nth-child(3){
+			margin-bottom:18px;
+		}
+		
+		&:nth-child(4){
+			margin-bottom:18px;
+		}
 		a {
 			display: inline-block;
 			text-decoration: none;
@@ -280,6 +311,7 @@ and more scalable.
 .sLeft {
 	h2 {
 		margin-top:0px;
+		line-height: 32px;
 		color: $dnw-title;
 	}
 	p{
@@ -292,7 +324,7 @@ and more scalable.
 .slideNav {	
 	width: 100%;
 	position: absolute;
-	top: 430px;
+	top: 470px;
 	z-index: 9999;
 	
 	.left {
@@ -345,16 +377,26 @@ HOME Page styles
 	height: 1px;
 	margin: 40px 0;
 }
+.divider1 {
+	border-top: 1px solid darken($dnw-white, 80%);
+	clear: both;
+	height: 1px;
+	margin: 10px 0;
+}
 .hm_wi {
+	display:block;
 	margin-top: 10px;
-	font-size:4em;
 	font-weight: 900;
 	color: $dnw-white;
   text-align:center;
   border: 1px solid darken($dnw-white, 80%);
 	border-right: 0px;
 	border-left: 0px;
+	letter-spacing: 10px;
 	text-shadow: 0px 0px 10px rgba(255,255,255, .55), 0 2px 1px #000;
+	font: 95px/1;
+	text-transform: uppercase;
+	margin: 5% auto 5%;
 	p {
 		margin: 0em 0;
 	}
@@ -373,7 +415,7 @@ HOME Page styles
 };
 .signUp {
 	h3 {
-	margin: 0;
+	margin: -10px 0 0 0;
 	font-size:3em;
 	font-weight: 900;
 	color: $dnw-white;
@@ -381,6 +423,8 @@ HOME Page styles
 	}
 }
 .dnw_dates_input {
+	width:60%;
+	font-family: $sans-serif;
 	float:left;
 	display:block;
 	padding:10px;
@@ -394,16 +438,18 @@ HOME Page styles
 	margin-top:8px;
 }
 .dnw_dates_btn {
+	font-family: $sans-serif;
 	float:left;
 	display:block;
 	background: $dnw-blue;
 	border-radius: 4px;
 	margin:0 10px;
-	padding:10px;
-	font-size:24px;
+	padding: 10px 10px 7px 10px;
+	font-size:26px;
 	border: 0px;
 	color: $dnw-white;
 	font-weight:900;
+	@include transition(all 0.1s ease-in-out);
 	.lit {
 	font-weight:100;
 		letter-spacing:1px;
@@ -437,15 +483,26 @@ HOME Page styles
 		font-weight:900;
 		margin-bottom:10px;
 		letter-spacing:5px;
+		@include transition(all 0.1s ease-in-out);
 		.lit {
 			font-weight:100;
 		}	
+		&:hover{
+			color: $dnw-white;
+			background: $dnw-blue;
+		}
 	}
 }
-
 /****************
 DEALS Page styles
 ****************/
+
+.article-footer {
+	color: lighten($dnw-gray,10%);
+	a{
+		color: lighten($dnw-gray,15%);
+	}
+}
 .list-it{
 	h1 {
 		color: $dnw-white;
@@ -455,7 +512,6 @@ DEALS Page styles
 		padding:0px 30px 15px;
 		margin-top:10px;
 		border-radius:4px;
-		
 		p {
 			margin: 0 0 1em;
 		}
@@ -471,10 +527,33 @@ DEALS Page styles
 	}
 }
 
+.show-it {
+	background: darken($dnw-gray, 5%);
+	padding:0px 30px 15px;
+	margin-top:10px;
+	border-radius:4px;
+	
+	h6 {
+			border-top: 1px solid lighten($dnw-gray, 0%);
+			color: darken($dnw-white, 45%);
+			padding-top:10px;
+			font-weight:200;
+	}
+}
+.show-it .entry-content {
+	padding-top: 10px;
+	color: darken($dnw-white, 15%);
+}
 
 /*********************
 POSTS & CONTENT STYLES
 *********************/
+
+.framer {
+	background: transparent;
+	border-radius: 6px;		
+	box-shadow: inset 0 0 50px rgba(0,0,0,.8), 0px 0px 10px 3px rgba(255,255,255,.1);
+}
 
 #content {
 	margin-top: .2em;
@@ -509,7 +588,7 @@ POSTS & CONTENT STYLES
 
 		/* post meta */
 		.byline {
-			color: #999;
+			//color: #999;
 
 			time {}
 		}
@@ -1068,5 +1147,7 @@ FOOTER STYLES
 	} /* end .footer-links */
 
 
-	.copyright {}
+	.copyright {
+		text-align: center;
+	}
 

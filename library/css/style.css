@@ -694,7 +694,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 100%;
   line-height: 1.5;
-  color: #565656; }
+  color: #919191; }
 
 /********************
 WORDPRESS BODY CLASSES
@@ -821,16 +821,31 @@ and more scalable.
 .top-nav {
   display: block;
   float: left;
-  margin-top: 37px; }
+  margin-top: 37px;
+  width: 70%; }
 
-.nav {
+.footer-nav {
+  text-align: center; }
+  .footer-nav li {
+    float: none!important;
+    margin-left: 15px;
+    display: inline;
+    font-size: 12px;
+    color: #4c5860; }
+    .footer-nav li:first-child {
+      margin-left: 0px; }
+    .footer-nav li a {
+      text-decoration: none;
+      color: #4c5860; }
+
+.top-nav {
   border: 1px solid #cccccc;
   border-bottom: 0;
   background: transparent;
   /* end .menu li */
   /* highlight current page */
   /* end current highlighters */ }
-  .nav li {
+  .top-nav li {
     /*
     so you really have to rethink your dropdowns for mobile.
     you don't want to have it expand too much because the
@@ -838,7 +853,15 @@ and more scalable.
     depend on the project. Here's some great info on it:
     http://www.alistapart.com/articles/organizing-mobile/
     */ }
-    .nav li a {
+    .top-nav li:nth-child(1) {
+      margin-bottom: 18px; }
+    .top-nav li:nth-child(2) {
+      margin-bottom: 18px; }
+    .top-nav li:nth-child(3) {
+      margin-bottom: 18px; }
+    .top-nav li:nth-child(4) {
+      margin-bottom: 18px; }
+    .top-nav li a {
       display: inline-block;
       text-decoration: none;
       padding: 0px 10px;
@@ -854,10 +877,10 @@ and more scalable.
       the style.scss file where it's relevant. We want to
       keep this file as small as possible!
       */ }
-    .nav li:last-child {
+    .top-nav li:last-child {
       margin-right: 0px; }
-    .nav li ul.sub-menu li a,
-    .nav li ul.children li a {
+    .top-nav li ul.sub-menu li a,
+    .top-nav li ul.children li a {
       padding-left: 30px; }
 
 /* end .nav */
@@ -877,6 +900,7 @@ and more scalable.
 
 .sLeft h2 {
   margin-top: 0px;
+  line-height: 32px;
   color: white; }
 .sLeft p {
   color: #bfbfbf; }
@@ -887,7 +911,7 @@ and more scalable.
 .slideNav {
   width: 100%;
   position: absolute;
-  top: 430px;
+  top: 470px;
   z-index: 9999; }
   .slideNav .left {
     left: 15px;
@@ -940,16 +964,26 @@ HOME Page styles
   height: 1px;
   margin: 40px 0; }
 
+.divider1 {
+  border-top: 1px solid #2b2b2b;
+  clear: both;
+  height: 1px;
+  margin: 10px 0; }
+
 .hm_wi {
+  display: block;
   margin-top: 10px;
-  font-size: 4em;
   font-weight: 900;
   color: #f7f7f7;
   text-align: center;
   border: 1px solid #2b2b2b;
   border-right: 0px;
   border-left: 0px;
-  text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.55), 0 2px 1px black; }
+  letter-spacing: 10px;
+  text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.55), 0 2px 1px black;
+  font: 95px/1;
+  text-transform: uppercase;
+  margin: 5% auto 5%; }
   .hm_wi p {
     margin: 0em 0; }
   .hm_wi strong {
@@ -964,13 +998,15 @@ HOME Page styles
   text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.65), 0 2px 1px black; }
 
 .signUp h3 {
-  margin: 0;
+  margin: -10px 0 0 0;
   font-size: 3em;
   font-weight: 900;
   color: #f7f7f7;
   text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.55), 0 2px 1px black; }
 
 .dnw_dates_input {
+  width: 60%;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   float: left;
   display: block;
   padding: 10px;
@@ -984,16 +1020,22 @@ HOME Page styles
   margin-top: 8px; }
 
 .dnw_dates_btn {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   float: left;
   display: block;
   background: #2a9ee1;
   border-radius: 4px;
   margin: 0 10px;
-  padding: 10px;
-  font-size: 24px;
+  padding: 10px 10px 7px 10px;
+  font-size: 26px;
   border: 0px;
   color: #f7f7f7;
-  font-weight: 900; }
+  font-weight: 900;
+  -webkit-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  -transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out; }
   .dnw_dates_btn .lit {
     font-weight: 100;
     letter-spacing: 1px; }
@@ -1021,13 +1063,26 @@ HOME Page styles
   text-align: center;
   font-weight: 900;
   margin-bottom: 10px;
-  letter-spacing: 5px; }
+  letter-spacing: 5px;
+  -webkit-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  -transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out; }
   .tertiary a .lit {
     font-weight: 100; }
+  .tertiary a:hover {
+    color: #f7f7f7;
+    background: #2a9ee1; }
 
 /****************
 DEALS Page styles
 ****************/
+.article-footer {
+  color: #363e43; }
+  .article-footer a {
+    color: #414b52; }
+
 .list-it h1 {
   color: #f7f7f7; }
 .list-it article {
@@ -1042,9 +1097,29 @@ DEALS Page styles
   .list-it article:first-child {
     margin-top: 0; }
 
+.show-it {
+  background: #141719;
+  padding: 0px 30px 15px;
+  margin-top: 10px;
+  border-radius: 4px; }
+  .show-it h6 {
+    border-top: 1px solid #1f2427;
+    color: #848484;
+    padding-top: 10px;
+    font-weight: 200; }
+
+.show-it .entry-content {
+  padding-top: 10px;
+  color: #d1d1d1; }
+
 /*********************
 POSTS & CONTENT STYLES
 *********************/
+.framer {
+  background: transparent;
+  border-radius: 6px;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.8), 0px 0px 10px 3px rgba(255, 255, 255, 0.1); }
+
 #content {
   margin-top: .2em; }
 
@@ -1059,9 +1134,6 @@ POSTS & CONTENT STYLES
 /* style by category (i.e. category-videos) */
 /* style by tag (i.e. tag-news) */
 /* post meta */
-.byline {
-  color: #999; }
-
 /* entry content */
 .entry-content {
   /*
@@ -1328,6 +1400,9 @@ override these styles for the desktop
 view.
 */
 /* end .footer-links */
+.copyright {
+  text-align: center; }
+
 /*
 LARGER MOBILE DEVICES
 This is for devices like the Galaxy Note or something that's
@@ -1517,6 +1592,26 @@ you can add resource intensive styles.
   /*********************
   NAVIGATION STYLES
   *********************/
+  .pgHeader {
+    font-weight: 100;
+    color: #2a9ee1 !important;
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.55), 0 2px 1px black;
+    width: 250px;
+    line-height: 40px; }
+    .pgHeader:first-line {
+      font-weight: 700;
+      color: #f7f7f7; }
+
+  .pstHeader {
+    font-weight: 100;
+    color: #2a9ee1 !important;
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.55), 0 2px 1px black;
+    width: 60%;
+    line-height: 40px; }
+    .pstHeader:first-line {
+      font-weight: 700;
+      color: #f7f7f7; }
+
   .nav {
     border: 0;
     /* end .menu ul li */

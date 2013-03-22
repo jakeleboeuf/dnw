@@ -143,6 +143,7 @@ function bones_scripts_and_styles() {
     wp_register_script( 'bones-js', get_stylesheet_directory_uri() . '/library/js/scripts.js', array( 'jquery' ), '', true );
     wp_register_script( 'slider', get_stylesheet_directory_uri() . '/library/js/swipe/swipe.js', array( 'jquery' ), '', true );
     wp_register_script( 'newJS', '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', array( 'jquery' ), '', true );
+    wp_register_script( 'fitText', get_stylesheet_directory_uri() . '/library/js/fitText/jquery.fittext.js', array( 'jquery' ), '', true );
 
     // enqueue styles and scripts
     wp_enqueue_script( 'bones-modernizr' );
@@ -156,10 +157,11 @@ function bones_scripts_and_styles() {
     using the google cdn. That way it stays cached
     and your site will load faster.
     */
-    wp_enqueue_script( 'jquery' );
+    //wp_enqueue_script( 'jquery' );
     wp_enqueue_script( 'newJS' );
     wp_enqueue_script( 'bones-js' );
     wp_enqueue_script( 'slider' );
+    wp_enqueue_script('fitText');
 
   }
 }
@@ -399,6 +401,40 @@ function bones_page_navi($before = '', $after = '') {
 	echo '</ol></nav>'.$after."";
 } /* end page navi */
 
+
+
+
+/*******************
+SHORTCODES
+*/
+function dnw_slide() {
+		ob_start();
+	  require_once('dnw_slider.php');
+		$returned = ob_get_contents();
+		ob_end_clean();
+		return $returned;
+}
+/*assoc_list is the shortcode*/
+add_shortcode('dnw_slide', 'dnw_slide');
+
+function msg($atts, $content = null) {
+	extract(shortcode_atts(array(
+		"title" => 'WHAT IS'
+	), $atts));
+	return '<h1 class="hm_wi">'.$title.'<strong> '.$content.'</strong></h1>';
+}
+
+add_shortcode("callout", "msg");
+
+function ifr($atts, $content = null) {
+	extract(shortcode_atts(array(
+		"width" => '100%'
+	), $atts));
+	return '<iframe class="framer" width="'.$width.'" height="600" src="'.$content.'" frameborder="0" allowfullscreen></iframe>';
+}
+
+add_shortcode("iframe", "ifr");
+
 /*********************
 RANDOM CLEANUP ITEMS
 *********************/
@@ -407,6 +443,28 @@ RANDOM CLEANUP ITEMS
 function bones_filter_ptags_on_images($content){
    return preg_replace('/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $content);
 }
+
+function improved_trim_excerpt($text) {
+        global $post;
+        if ( '' == $text ) {
+                $text = get_the_content('');
+                $text = apply_filters('the_content', $text);
+                $text = str_replace('\]\]\>', ']]&gt;', $text);
+                $text = preg_replace('@<script[^>]*?>.*?</script>@si', '', $text);
+                $text = strip_tags($text, '<p><a><h1><em><b><strong><h2><h3>');
+                $excerpt_length = 50;
+                $words = explode(' ', $text, $excerpt_length + 1);
+                if (count($words)> $excerpt_length) {
+                        array_pop($words);
+                        array_push($words, '<a class="excerpt-read-more" href="'. get_permalink($post->ID) . '" title="'. get_the_title($post->ID).'">Read More</a>');
+                        $text = implode(' ', $words);
+                }
+        }
+        return $text;
+}
+
+remove_filter('get_the_excerpt', 'wp_trim_excerpt');
+add_filter('get_the_excerpt', 'improved_trim_excerpt');
 
 // This removes the annoying […] to a Read More link
 function bones_excerpt_more($more) {

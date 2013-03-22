@@ -12,8 +12,9 @@ Template Name: Date Night Deals
 
 						<div id="main" class="eightcol first clearfix" role="main">
 							
-							<h1 class="page-title"><?php the_title(); ?></h1>
-							<?php query_posts('cat=3&post_type=post&post_status=publish&posts_per_page=10&paged='. get_query_var('paged')); ?>
+							<h1 class="page-title pgHeader"><?php the_title(); ?></h1>
+							<? $category_ID = get_category_id('Date Night Deals'); ?>
+							<?php query_posts('cat='.$category_ID.'&post_type=post&post_status=publish&posts_per_page=10&paged='. get_query_var('paged')); ?>
 							<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
 							<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article">

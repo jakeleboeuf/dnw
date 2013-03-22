@@ -391,6 +391,26 @@ HEADER STYLES
 /*********************
 NAVIGATION STYLES
 *********************/
+.pgHeader {
+  font-weight: 100;
+  color: #2a9ee1 !important;
+  text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.55), 0 2px 1px black;
+  width: 250px;
+  line-height: 40px; }
+  .pgHeader:first-line {
+    font-weight: 700;
+    color: #f7f7f7; }
+
+.pstHeader {
+  font-weight: 100;
+  color: #2a9ee1 !important;
+  text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.55), 0 2px 1px black;
+  width: 60%;
+  line-height: 40px; }
+  .pstHeader:first-line {
+    font-weight: 700;
+    color: #f7f7f7; }
+
 .nav {
   border: 0;
   /* end .menu ul li */

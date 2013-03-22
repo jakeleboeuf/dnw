@@ -67,6 +67,45 @@ jQuery(document).ready(function($) {
 	
 	// add all your scripts here
 	
+// ---------------------------------------- 
+// All Jake's JS -------------------------- 
+// ----------------------------------------
+
+	// Nasty validation from original site
+	$("#signUpForm").submit(function(e) {
+			var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+			if( reg.test($("input[name=EMAIL]").val()) == false ) {
+				alert('Please enter a valid E-mail Address');
+				return false;
+			}
+			
+	    $('input[type=checkbox]').each(function () {
+	        if($(this).is(':checked')){
+	            return true;
+	        }
+	    });
+	    alert("Please confirm that you are committed to the Date Night Challenege by checking the checkbox.");
+	    return false;
+	});
+	
+	var h1Length = $(".hm_wi").text().length;
+	var strLth = h1Length/12.17391304347826;
+	//alert(strLth);
+	$(".hm_wi").fitText(strLth);
+	
+	window.mySwipe = new Swipe(document.getElementById('slider'), {
+	  startSlide: 0,
+	  speed: 400,
+	  auto: 6000,
+	  continuous: true,
+	  disableScroll: false,
+	  stopPropagation: false,
+	  callback: function(index, elem) {dots()},
+	  transitionEnd: function(index, elem) {}
+	});
+	function dots(){
+		//alert('a');
+	}
  
 }); /* end of as page load scripts */
 
@@ -106,27 +145,3 @@ jQuery(document).ready(function($) {
 	w.addEventListener( "devicemotion", checkTilt, false );
 })( this );
 
-
-// ---------------------------------------- 
-// All Jake's JS -------------------------- 
-// ----------------------------------------
-
-$(document).ready(function() {
-
-	window.mySwipe = new Swipe(document.getElementById('slider'), {
-	  startSlide: 0,
-	  speed: 400,
-	  auto: 3000,
-	  continuous: true,
-	  disableScroll: false,
-	  stopPropagation: false,
-	  callback: function(index, elem) {dots()},
-	  transitionEnd: function(index, elem) {}
-	});
-	function dots(){
-		//alert('a');
-	}
-	
-	hideIt();
-	
-});

@@ -39,6 +39,28 @@ HEADER STYLES
 NAVIGATION STYLES
 *********************/
 
+.pgHeader {
+	font-weight: 100;
+	color: $dnw-blue!important;
+	text-shadow: 0px 0px 10px rgba(255,255,255, .55), 0 2px 1px #000;
+  width:250px;
+	line-height:40px;
+	&:first-line {
+		font-weight:700;
+		color: $dnw-white;
+	}
+}
+.pstHeader {
+	font-weight: 100;
+	color: $dnw-blue!important;
+	text-shadow: 0px 0px 10px rgba(255,255,255, .55), 0 2px 1px #000;
+  width:60%;
+	line-height:40px;
+	&:first-line {
+		font-weight:700;
+		color: $dnw-white;
+	}
+}
 .nav {
 	border: 0;
 
