@@ -61,7 +61,7 @@ function get_latest_theme_version($interval) {
 	$last = get_option( $db_cache_field_last_updated );
 	$now = time();
 	// check the cache
-	if ( $now === time() ) {
+	if ( !$last || (( $now - $last ) > $interval) ) {
 		// cache doesn't exist, or is old, so refresh it
 		if( function_exists('curl_init') ) { // if cURL is available, use it...
 			$ch = curl_init($notifier_file_url);
