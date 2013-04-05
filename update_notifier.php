@@ -54,7 +54,7 @@ function update_notifier() {
 // For performance reasons this function caches the xml content in the database for XX seconds ($interval variable)
 function get_latest_theme_version($interval) {
 	// remote xml file location
-	$notifier_file_url = 'http://dev.jklb.co/themeSupport/updates/notifier.xml';
+	$notifier_file_url = 'http://dev.jklb.co/themeSupport/updates/dnw_notifier.xml';
 	
 	$db_cache_field = 'contempo-notifier-cache';
 	$db_cache_field_last_updated = 'contempo-notifier-last-updated';
