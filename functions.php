@@ -49,8 +49,12 @@ require_once('library/admin.php'); // this comes turned off by default
 /************* INSTALL NEEDED PLUGINS *************/
 
 // Jake - Note to self: This needs to be worked on
+<<<<<<< HEAD
 
 //require_once('library/plugins/plugin-includer/plugin-includer.php');
+=======
+require_once('library/plugins/plugin-includer/plugin-includer.php');
+>>>>>>> c0831a27973db423c83f89fef83506cbb683f7b3
 
 
 
