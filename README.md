@@ -1,16 +1,4 @@
-dnw
-===
-
-The Date Night Wordpress Theme
-
-Pushing to this repo will update the dnw theme hosted on dev.jklb.co/theems.
-----------------------------------------------------------------------------
-So that's neat.
-
-
-
-
-[DNW theme](http://dev.jklb.co/theems) [![Build Status](https://secure.travis-ci.org/jakeleboeuf/dnw.png)](http://travis-ci.org/jakeleboeuf/dnw)
+[DNW theme](http://dev.jklb.co/theems) [![Build Status](https://secure.travis-ci.org/jakeleboeuf/try_git.png)](http://travis-ci.org/jakeleboeuf/dnw)
 =================
 
 This site is originally designed and built by DBA. It has been adapted into a theme by Jake LeBoeuf, and was built on the Bones framework. 
