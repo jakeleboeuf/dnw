@@ -25,7 +25,7 @@ Please use this workflow!
 -------
 Clone this repo to your local machine and make your edits like so:
 
-	git clone git@github.com:SammyKMedia/DateNightWorks.com.git
+	git clone git@github.com:jakeleboeuf/dnw.git
 
 If you get a message like `Permission denied (publickey)`, then you need to [set up your SSH keys with GitHub](https://help.github.com/articles/generating-ssh-keys).
 
