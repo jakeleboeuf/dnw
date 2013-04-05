@@ -79,13 +79,12 @@ jQuery(document).ready(function($) {
 				return false;
 			}
 			
-	    $('input[type=checkbox]').each(function () {
-	        if($(this).is(':checked')){
+	        if($('input[type=checkbox]').is(':checked')){
 	            return true;
-	        }
-	    });
-	    alert("Please confirm that you are committed to the Date Night Challenege by checking the checkbox.");
-	    return false;
+	        }else{
+	   			 alert("Please confirm that you are committed to the Date Night Challenege by checking the checkbox.");
+				   return false;
+	    		}
 	});
 	
 	var h1Length = $(".hm_wi").text().length;

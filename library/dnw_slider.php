@@ -4,7 +4,9 @@
 								<div class="swipe-wrap">
 								<?php
 									global $post;
-									$args = array( "numberposts" => 4, "offset"=> 0, "category"=> 5);
+									
+									$slide_ID = get_category_id('Feature Slider');
+									$args = array( "numberposts" => 10, "offset"=> 0, "category"=> $slide_ID);
 									$myposts = get_posts( $args );
 									$i = 0;
 		

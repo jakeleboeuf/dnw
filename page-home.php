@@ -26,7 +26,9 @@ Template Name: Home Page
 								<? $options = get_option( 'dnw_theme_options' ); ?>
 								<h3><?echo $options['dnw_dates'];?> <span class="lite"><?echo $options['dnw_weeks'];?></span></h3>
 								<div class="newsletter">
-									<form id="signUpForm" action="<?echo $options['dnw_url'];?>" method="post" target="_blank">
+									<form id="signUpForm" action="<?echo $options['dnw_mc'];?>" method="post" target="_blank">
+										<input type="hidden" name="u" value="<?echo $options['dnw_url'];?>" />
+										<input type="hidden" name="id" value="<?echo $options['dnw_id'];?>" />
 										<div class="input-floats clearfix">
 											<input class="dnw_dates_input" type="text" name="EMAIL" placeholder="E-MAIL ADDRESS" />
 											<button class="dnw_dates_btn" type="submit"/>SIGN <span class="lit">ME UP</span></button>
@@ -51,6 +53,8 @@ Template Name: Home Page
 								<a href="http://twitter.com/<?echo $options['dnw_tw'];?>" target="_blank"><span class="lit">FOLLOW US ON</span> TWITTER</a>
 							</div>
 							<div class="divider twelvecol first clearfix"></div>
+						</div>
+						<div class="quart twelvecol first clearfix">
 							<div class="fivecol first">&nbsp;</div>
 							<div class="social threecol first">
 								<div id="fb-root"></div>

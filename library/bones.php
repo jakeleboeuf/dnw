@@ -185,11 +185,54 @@ function bones_theme_support() {
 	    array(
 	    'default-image' => get_stylesheet_directory_uri() . '/library/img/dnw_bg.jpg',  // background image default
 	    'default-color' => '000000', // background color default (dont add the #)
-	    'wp-head-callback' => '_custom_background_cb',
+	    'wp-head-callback' => 'jake_custom_background_cb',
 	    'admin-head-callback' => '',
 	    'admin-preview-callback' => ''
 	    )
 	);
+
+
+
+		function jake_custom_background_cb() {
+			// $background is the saved custom image, or the default image.
+			$background = set_url_scheme( get_background_image() );
+
+			// $color is the saved custom color.
+			// A default has to be specified in style.css. It will not be printed here.
+			$color = get_theme_mod( 'background_color' );
+
+			if ( ! $background && ! $color )
+				return;
+
+			$style = $color ? "background-color: #$color;" : '';
+
+			if ( $background ) {
+				$image = " background-image: url('$background');";
+
+				$repeat = get_theme_mod( 'background_repeat', 'repeat' );
+				if ( ! in_array( $repeat, array( 'no-repeat', 'repeat-x', 'repeat-y', 'repeat' ) ) )
+					$repeat = 'no-repeat';
+				$repeat = " background-repeat: $repeat;";
+
+				$position = get_theme_mod( 'background_position_x', 'left' );
+				if ( ! in_array( $position, array( 'center', 'right', 'left' ) ) )
+					$position = 'center';
+				$position = " background-position: top $position;";
+
+				$attachment = get_theme_mod( 'background_attachment', 'scroll' );
+				if ( ! in_array( $attachment, array( 'fixed', 'scroll' ) ) )
+					$attachment = 'scroll';
+				$attachment = " background-attachment: $attachment;";
+
+				$style .= $image . $repeat . $position . $attachment;
+			}
+		?>
+		<style type="text/css" id="custom-background-css">
+		body.custom-background { <?php echo trim( $style ); ?> }
+		</style>
+		<?php
+		}
+
 
 	// rss thingy
 	add_theme_support('automatic-feed-links');

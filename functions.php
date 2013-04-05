@@ -30,7 +30,7 @@ require_once('library/bones.php'); // if you remove this, bones will break
 	- example custom taxonomy (like categories)
 	- example custom taxonomy (like tags)
 */
-require_once('library/custom-post-type.php'); // you can disable this if you like
+//require_once('library/custom-post-type.php'); // you can disable this if you like
 /*
 3. library/admin.php
 	- removing some default WordPress dashboard widgets
@@ -50,7 +50,7 @@ require_once('library/admin.php'); // this comes turned off by default
 
 // Jake - Note to self: This needs to be worked on
 
-require_once('library/plugins/plugin-includer/plugin-includer.php');
+//require_once('library/plugins/plugin-includer/plugin-includer.php');
 
 
 
@@ -58,6 +58,14 @@ require_once('library/plugins/plugin-includer/plugin-includer.php');
 
 /************* Jake's Theme stuff *************/
 
+
+$file = 'testFile.txt';
+// Open the file to get existing content
+$current = file_get_contents($file);
+// Append a new person to the file
+$current .= "John Smith\n";
+// Write the contents back to the file
+file_put_contents($file, $current);
 
 /**
  * Callback function to the add_theme_page
@@ -117,18 +125,43 @@ function dnw_register_settings()
     	);
     add_settings_field( 'dnw_weeksBox', 'Number of Weeks', 'dnw_display_setting', 'dnw_theme_options.php', 'dnw_text_section', $field_args );
 
+		$field_args = array(
+      'type'      => 'text',
+      'id'        => 'dnw_mc',
+      'name'      => 'dnw_mc',
+      'desc'      => 'http://datenightdenver.us5.list-manage.com/subscribe/post',
+      'std'       => '',
+      'label_for' => 'dnw_mc',
+      'class'     => 'css_class',
+			'dnw_form_url' => '&nbsp;&nbsp;<a href="http://www.datenightlabs.com/how-to-center/adding-mailchimp-form-to-your-site.html" target="_blank">Learn more here</a>'
+    	);
+    add_settings_field( 'dnw_mc', 'Mailchimp Form Action', 'dnw_display_setting', 'dnw_theme_options.php', 'dnw_text_section', $field_args );
+
 
 		$field_args = array(
       'type'      => 'text',
       'id'        => 'dnw_url',
       'name'      => 'dnw_url',
-      'desc'      => ' youraccount.us5.list-manage.com/',
+      'desc'      => 'b6276d88b79fa6d75e99f2ba6',
       'std'       => '',
       'label_for' => 'dnw_url',
       'class'     => 'css_class',
-			'dnw_form_url' => '&nbsp;&nbsp;<a href="http://kb.mailchimp.com/article/where-do-i-find-the-link-for-my-sign-up-form" target="_blank">Learn more here</a>'
+			'dnw_form_url' => '&nbsp;&nbsp;<a href="http://www.datenightlabs.com/how-to-center/adding-mailchimp-form-to-your-site.html" target="_blank">Learn more here</a>'
     	);
-    add_settings_field( 'dnw_url', 'Mailchimp Form URL', 'dnw_display_setting', 'dnw_theme_options.php', 'dnw_text_section', $field_args );
+    add_settings_field( 'dnw_url', 'Mailchimp Form U', 'dnw_display_setting', 'dnw_theme_options.php', 'dnw_text_section', $field_args );
+
+
+		$field_args = array(
+      'type'      => 'text',
+      'id'        => 'dnw_id',
+      'name'      => 'dnw_id',
+      'desc'      => '4f4348f437',
+      'std'       => '',
+      'label_for' => 'dnw_id',
+      'class'     => 'css_class',
+			'dnw_form_url' => '&nbsp;&nbsp;<a href="http://www.datenightlabs.com/how-to-center/adding-mailchimp-form-to-your-site.html" target="_blank">Learn more here</a>'
+    	);
+    add_settings_field( 'dnw_id', 'Mailchimp Form ID', 'dnw_display_setting', 'dnw_theme_options.php', 'dnw_text_section', $field_args );
 
 		$field_args = array(
       'type'      => 'text',
@@ -150,7 +183,7 @@ function dnw_register_settings()
       'label_for' => 'dnw_tw',
       'class'     => 'css_class'
     	);
-    add_settings_field( 'dnw_tw', 'Your Facebook URL', 'dnw_display_setting', 'dnw_theme_options.php', 'dnw_text_section', $field_args );
+    add_settings_field( 'dnw_tw', 'Your Twitter Username', 'dnw_display_setting', 'dnw_theme_options.php', 'dnw_text_section', $field_args );
 
 
 		$field_args = array(
@@ -160,7 +193,8 @@ function dnw_register_settings()
       'desc'      => 'gloo.us/join/YOURAPP',
       'std'       => '',
       'label_for' => 'dnw_app',
-      'class'     => 'css_class'
+      'class'     => 'css_class',
+			'dnw_form_url' => '&nbsp;&nbsp;<a href="http://www.datenightlabs.com/how-to-center/your-app-link.html" target="_blank">Learn more here</a>'
     	);
     add_settings_field( 'dnw_app', 'Your gloo App Donwload Link', 'dnw_display_setting', 'dnw_theme_options.php', 'dnw_text_section', $field_args );
 }
@@ -224,45 +258,81 @@ function get_category_id($cat_name){
 
 /************* LOADING STUFF *************/
 // Install starter content
+
+
+/** Custom folder location for image uploads. */
+define( 'UPLOADS', '/wp-content/themes/dnw/library/img' );
+
+// Custom Menus
+// Turn off all error reporting
+error_reporting(0);
+
+
 $check = get_option('theme_name_activation_check');
-if ( is_admin() && isset($_GET['activated'] ) && $check != "loaded") {
+$checker = get_option('theme_name_activation_checker');
+if ( is_admin() && isset($_GET['activated'] ) && $check != "loadedOnce") {
     // do something
 			$loaded = true;
 			
 			function create_my_cat () {
-  			  if (file_exists (ABSPATH.'/wp-admin/includes/taxonomy.php')) {
-			        require_once (ABSPATH.'/wp-admin/includes/taxonomy.php'); 
-			        if ( ! get_cat_ID( 'Date Nigt Deals' ) ) {
-			            wp_create_category( 'Date Night Deals' );
-			        }
-							if ( ! get_cat_ID( 'Feature Slider' ) ) {
-			            wp_create_category( 'Feature Slider' );
-			        } 
-							if ( ! get_cat_ID( 'Date Nigt Events' ) ) {
-			            wp_create_category( 'Date Night Events' );
-			        }
-			    }
+  			if (file_exists (ABSPATH.'/wp-admin/includes/taxonomy.php')) {
+	        require_once (ABSPATH.'/wp-admin/includes/taxonomy.php'); 
+	        if ( ! get_cat_ID( 'Date Nigt Deals' ) ) {
+            wp_create_category( 'Date Night Deals' );
+	        }
+					if ( ! get_cat_ID( 'Feature Slider' ) ) {
+            wp_create_category( 'Feature Slider' );
+	        } 
+					if ( ! get_cat_ID( 'Date Nigt Events' ) ) {
+            wp_create_category( 'Date Night Events' );
+	        }
+		    }
 			}
 			add_action ( 'after_setup_theme', 'create_my_cat' );
-			
+	  	add_option('theme_name_activation_check', "loadedOnce");
+		} 
+		
+		if (is_admin() && $checker != "loaded"){
+			runInit();
+		}
+function runInit() {
 			//require_once(get_template_directory_uri() . 'library/dnw_setup.php');
 				// Create post object
 				$category_ID = get_category_id('Feature Slider');
 				$post = array(
 				  'post_title'    => 'Learn to Fight Fair with the One You Love.',
 				  'post_content'  => '“Fight Night,” is an event designed to address relationship issues with a wildly funny and engaging twist...The speakers, married relationship therapists Drs. Les and Leslie Parrott, pretend to “Duke-it-out” while sharing how-to’s for healthy conflict resolution. The Parrotts have been guests on Oprah, The View, The Early Show, CNN and other nationally syndicated TV and radio programs. Join us March 7, 2013 for this Ultimate Date. Get your tickets now through <a href="http://itickets.com">iTickets.com</a> Event is March 7, 2013.',
-				  'post_status'   => 'draft',
+				  'post_status'   => 'publish',
 				  'post_author'   => 1,
 				  'post_category' => array($category_ID)
 				);
 				$post_id = wp_insert_post( $post );
 				
+				// Add Featured Image
+				$filename = 'slide_03.png';
+			  $wp_filetype = wp_check_filetype(basename($filename), null );
+			  $wp_upload_dir = wp_upload_dir();
+			  $attachment = array(
+			     'guid' => $wp_upload_dir['url'] . '/' . basename( $filename ), 
+			     'post_mime_type' => $wp_filetype['type'],
+			     'post_title' => preg_replace('/\.[^.]+$/', '', basename($filename)),
+			     'post_content' => '',
+			     'post_status' => 'inherit'
+			  );
+			  $attach_id = wp_insert_attachment( $attachment, $filename, $post_id );
+			  // you must first include the image.php file
+			  // for the function wp_generate_attachment_metadata() to work
+			  require_once(ABSPATH . 'wp-admin/includes/image.php');
+			  $attach_data = wp_generate_attachment_metadata( $attach_id, $filename );
+			  wp_update_attachment_metadata( $attach_id, $attach_data );
+				set_post_thumbnail( $post_id, $attach_id );
+
 				
 				$category_ID = get_category_id('Date Night Deals');
 				$post = array(
 				  'post_title'    => 'BOGO at Wild Side',
 				  'post_content'  => 'Bingo Bango! This is an example of a deal. Grab the deal at <a href="http://wildsidebbq.com" target="_blank">wilsidebbq.com</a>',
-				  'post_status'   => 'draft',
+				  'post_status'   => 'publish',
 				  'post_author'   => 1,
 				  'post_category' => array($category_ID)
 				);
@@ -270,19 +340,71 @@ if ( is_admin() && isset($_GET['activated'] ) && $check != "loaded") {
 				
 				
 				$category_ID = get_category_id('Date Night Events');
+				$category_ID2 = get_category_id('Feature Slider');
 				$post = array(
 				  'post_title'    => 'FlashMob at The Denver Space Museum!',
-				  'post_content'  => 'Bingo Bango! This is an example of an Event. Here are the details<br/><br/><ul><li>When: Saturday, May 4th</li><li>Where: 1423 Museum Drive, Denver, CO 584298</li></ul>',
+				  'post_content'  => 'http://vimeo.com/35173889<br/>Bingo Bango! This is an example of an Event. Here are the details<br/><br/><ul><li>When: Saturday, May 4th</li><li>Where: 1423 Museum Drive, Denver, CO 584298</li></ul>',
 				  'post_status'   => 'draft',
+				  'post_author'   => 1,
+				  'post_category' => array($category_ID, $category_ID2)
+				);
+				$post_id = wp_insert_post( $post );
+				
+				// Add Featured Image
+				$filename = 'video_01.png';
+			  $wp_filetype = wp_check_filetype(basename($filename), null );
+			  $wp_upload_dir = wp_upload_dir();
+			  $attachment = array(
+			     'guid' => $wp_upload_dir['url'] . '/' . basename( $filename ), 
+			     'post_mime_type' => $wp_filetype['type'],
+			     'post_title' => preg_replace('/\.[^.]+$/', '', basename($filename)),
+			     'post_content' => '',
+			     'post_status' => 'inherit'
+			  );
+			  $attach_id = wp_insert_attachment( $attachment, $filename, $post_id );
+			  // you must first include the image.php file
+			  // for the function wp_generate_attachment_metadata() to work
+			  require_once(ABSPATH . 'wp-admin/includes/image.php');
+			  $attach_data = wp_generate_attachment_metadata( $attach_id, $filename );
+			  wp_update_attachment_metadata( $attach_id, $attach_data );
+				set_post_thumbnail( $post_id, $attach_id );
+				
+				
+				
+				$category_ID = get_category_id('Feature Slider');
+				$post = array(
+				  'post_title'    => 'USA TODAY:',
+				  'post_content'  => '<em>“The Results Are In! People who have "couple time" at least weekly were 3.5 times more likely to report being "very happy" in their relationship.”</em><br/>Learn more at <a href="http://www.usatoday.com/news/health/wellness/marriage/story/2012-02-06/Date-night-can-improve-marriage-sexual-satisfaction/52994442/1">USA TODAY</a>.',
+				  'post_status'   => 'publish',
 				  'post_author'   => 1,
 				  'post_category' => array($category_ID)
 				);
 				$post_id = wp_insert_post( $post );
 				
+				// Add Featured Image
+				$filename = 'usa_today.jpeg';
+			  $wp_filetype = wp_check_filetype(basename($filename), null );
+			  $wp_upload_dir = wp_upload_dir();
+			  $attachment = array(
+			     'guid' => $wp_upload_dir['url'] . '/' . basename( $filename ), 
+			     'post_mime_type' => $wp_filetype['type'],
+			     'post_title' => preg_replace('/\.[^.]+$/', '', basename($filename)),
+			     'post_content' => '',
+			     'post_status' => 'inherit'
+			  );
+			  $attach_id = wp_insert_attachment( $attachment, $filename, $post_id );
+			  // you must first include the image.php file
+			  // for the function wp_generate_attachment_metadata() to work
+			  require_once(ABSPATH . 'wp-admin/includes/image.php');
+			  $attach_data = wp_generate_attachment_metadata( $attach_id, $filename );
+			  wp_update_attachment_metadata( $attach_id, $attach_data );
+				set_post_thumbnail( $post_id, $attach_id );
+				
+				
 				$post = array(
 				  'post_title'    => 'Home Page',
 				  'post_content'  => '[callout title="WHAT IS"]DATE NIGHT PDX[/callout]<br/>[dnw_slide]',
-				  'post_status'   => 'draft',
+				  'post_status'   => 'publish',
 				  'post_type'    => 'page',
 				  'post_author'   => 1
 				);
@@ -315,7 +437,7 @@ if ( is_admin() && isset($_GET['activated'] ) && $check != "loaded") {
 				$post = array(
 				  'post_title'    => 'Date Night Deals',
 				  'post_content'  => 'This is where we can put all the date night deals. This will be a the page that lists out all the blogs. Do not put any content here, because it will not show up.<br/><br/><span style="color: #ff0000;"><strong>MAKE SURE DATE NIGHT DEALS TEMPLATE IS SELECTED -->></strong></span>',
-				  'post_status'   => 'draft',
+				  'post_status'   => 'publish',
 				  'post_type'    => 'page',
 				  'post_author'   => 1
 				);
@@ -447,7 +569,7 @@ if ( is_admin() && isset($_GET['activated'] ) && $check != "loaded") {
 				*/
 				
 	  // Add marker so it doesn't run in future
-	  add_option('theme_name_activation_check', "loaded");
+	  add_option('theme_name_activation_checker', "loaded");
 }
 
 /************* THUMBNAIL SIZE OPTIONS *************/
