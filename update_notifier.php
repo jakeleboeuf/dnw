@@ -36,7 +36,7 @@ function update_notifier() {
         <div id="instructions" style="max-width: 800px;">
             <h3>Update Download and Instructions</h3>
             <p><strong>Please note:</strong> make a <strong>backup</strong> of the Theme inside your WordPress installation folder <strong>/wp-content/themes/<?php echo strtolower($theme_data['Name']); ?>/</strong></p>
-            <p>To update the Theme, head over to <a href="http://datenightworks.com/asset-bank/campaign/?activate=website">datenightworks.com</a> and login to your account. Go to the <strong>resources</strong> section and re-download the theme.</p>
+            <p>To update the Theme, head over to <a href="http://datenightworks.com/asset-bank/campaign/?activate=website" target="_blank">datenightworks.com</a> and login to your account. Go to the <strong>resources</strong> section and re-download the theme.</p>
             <p>Extract the zip's contents, look for the extracted theme folder, and after you have all the new files upload them using FTP to the <strong>/wp-content/themes/<?php echo strtolower($theme_data['Name']); ?>/</strong> folder overwriting the old ones (this is why it's important to backup any changes you've made to the theme files).</p>
             <p>If you didn't make any changes to the theme files, you are free to overwrite them with the new ones without the risk of losing theme settings, pages, posts, etc, and backwards compatibility is guaranteed.</p>
         </div>
