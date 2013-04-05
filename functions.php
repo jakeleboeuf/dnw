@@ -57,14 +57,8 @@ require_once('library/plugins/plugin-includer/plugin-includer.php');
 
 /************* Jake's Theme stuff *************/
 
-
-$file = 'testFile.txt';
-// Open the file to get existing content
-$current = file_get_contents($file);
-// Append a new person to the file
-$current .= "John Smith\n";
-// Write the contents back to the file
-file_put_contents($file, $current);
+// Check for theme updates:
+include("update_notifier.php");
 
 /**
  * Callback function to the add_theme_page
