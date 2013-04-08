@@ -10,3 +10,7 @@ notifications:
       - dev@jakeleboeuf.com
     on_success: [always|never|change] # default: change
     on_failure: [always|never|change] # default: change
+    
+before_install:
+  - wget http://pear.phpunit.de/get/phpunit.phar
+  - chmod +x phpunit.phar
