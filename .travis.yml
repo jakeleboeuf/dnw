@@ -3,3 +3,10 @@ php:
   - "5.5"
   - "5.4"
   - "5.3"
+  
+notifications:
+  email:
+    recipients:
+      - dev@jakeleboeuf.com
+    on_success: [always|never|change] # default: change
+    on_failure: [always|never|change] # default: change
