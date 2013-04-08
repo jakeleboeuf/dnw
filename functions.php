@@ -53,11 +53,10 @@ require_once('library/plugins/plugin-includer/plugin-includer.php');
 
 
 
-// Check for Updates
-
-require_once('theme/update.php'); // this comes turned off by default
 
 /************* Jake's Theme stuff *************/
+// Check for Updates
+require_once('theme/update.php');
 
 // Check for theme updates:
 include("update_notifier.php");
