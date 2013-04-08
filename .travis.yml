@@ -11,9 +11,6 @@ notifications:
     on_success: [always|never|change] # default: change
     on_failure: [always|never|change] # default: change
 
-
-# Took this stuff from the example:
-  
 # optionally specify a list of environments, for example to test different RDBMS
 env:
   - DB=mysql
