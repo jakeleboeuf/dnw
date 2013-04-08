@@ -6,7 +6,7 @@ This site is originally designed and built by DBA. It has been adapted into a th
 ## Pushing to this repo
 -------
 
-Work locally and push updates to this repo. Updates will be pushed to the dnw theme @ dev.jklb.co/theems 
+Work locally and submit a pull request when you're ready. Updates to this repo will be pushed to the dnw theme @ dev.jklb.co/theems 
 
 
 Please use this workflow!
