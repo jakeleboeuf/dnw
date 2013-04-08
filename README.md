@@ -1,7 +1,7 @@
 [DNW Theme](http://dev.jklb.co/theems) [![Build Status](https://travis-ci.org/jakeleboeuf/dnw.png)](https://travis-ci.org/jakeleboeuf/dnw)
 =================
 
-This site is originally designed and built by DBA. It has been adapted into a theme by Jake LeBoeuf, and was built on the Bones framework. 
+This site is originally designed and built by [DBA](http://dbaworldwide.com/). It has been adapted into a theme by [Jake LeBoeuf](http://jklb.co), and was built on the [Bones framework](http://themble.com/bones). 
 
 ## Pushing to this repo
 -------
